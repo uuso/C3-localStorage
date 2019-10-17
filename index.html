@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>City mapper</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="opts.js"></script>
+	<script src="script.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col d-flex justify-content-center flex-wrap mt-5">			
+				<h1 id="city-header" class="justify-content-center d-none">Текущий город -&nbsp;
+					<span class="text-primary" id="city-span">222</span>
+					<a href="javascript: void(0)" id="city-reset" class="text-danger">
+						<sup>&times;</sup>
+					</a>.</h1>
+				
+				<form class="form-inline" action="#">
+					<input type="text" class="form-control" id="city-input" placeholder="Введите свой город...">
+					<button id="city-btn" class="btn btn-success ml-2" type="submit">Установить</button>
+					
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<h2 class="mt-5">Выберите опции:</h2>
+				<form id="opts-form" action="javascript: saveOptions();">
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" id="option1">
+						<label class="form-check-label" for="option1">Синие плавки</label>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" id="option2">
+						<label class="form-check-label" for="option2">Салатовые сланцы</label>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" id="option3">
+						<label class="form-check-label" for="option3">Прозрачная шапочка для плавания</label>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" id="option4">
+						<label class="form-check-label" for="option4">Бейсболка без козырька</label>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" id="option5">
+						<label class="form-check-label" for="option5">Майка с рукавами</label>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" id="option6">
+						<label class="form-check-label" for="option6">Ультраузкие солнцезащитные очки</label>
+					</div>
+					<button type="submit" id="btn-opts" class="btn btn-primary">Сохранить</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function(event) { 
+			if (city = localStorage.getItem("city")) {
+				switchVisible();
+				document.querySelector("#city-span").innerText = city;
+				console.log(`Current city is ${city}.`);
+			}
+			if (localStorage.getItem("opts")) {
+				loadOptions();
+
+			}
+			document.querySelector("#city-btn").addEventListener("click", btnClick);
+			document.querySelector("#city-reset").addEventListener("click", cityReset);
+		});
+	</script>
+</body>
+</html>
